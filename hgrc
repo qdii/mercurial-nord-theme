@@ -1,0 +1,117 @@
+[trainingwheels]
+warn-head-paths=False
+
+[extensions]
+beautifygraph =
+journal =
+
+[color]
+# Extends the normal set of colors with Nord palette.
+# Each Nord color is mapped to its closest ANSI color.
+color.nord0 = 23
+color.nord1 = 59
+color.nord2 = 8
+color.nord3 = 59
+color.nord4 = 188
+color.nord5 = 189
+color.nord6 = 231
+color.nord7 = 109
+color.nord8 = 110
+color.nord9 = 109
+color.nord10 = 67
+color.nord11 = 131
+color.nord12 = 173
+color.nord13 = 222
+color.nord14 = 144
+color.nord15 = 139
+
+status.modified = nord13 bold underline nord11_background
+status.added = nord14 bold
+status.removed = nord11 bold nord9_background
+status.deleted = nord7 bold underline
+status.unknown = magenta bold underline
+status.ignonord11 = nord0 bold
+status.clean = none
+status.copied = none
+
+qseries.applied = nord13 bold underline
+qseries.unapplied = nord0 bold
+qseries.missing = nord11 bold
+
+diff.diffline = bold
+diff.extended = nord7 bold
+diff.file_a = nord11 bold
+diff.file_b = nord14 bold
+diff.hunk = nord8
+diff.deleted = nord11
+diff.inserted = nord14
+diff.changed = nord4
+diff.tab =
+diff.trailingwhitespace = bold nord11_background
+# Blank so it inherits the style of the surrounding label
+changeset.public =
+changeset.secret =
+
+resolve.unresolved = nord11 bold
+resolve.resolved = nord14 bold
+bookmarks.active = nord14
+branches.active = none
+branches.closed = nord0 bold
+branches.current = nord4
+branches.inactive = none
+tags.normal = nord14
+tags.local = nord0 bold
+rebase.rebased = nord9
+rebase.remaining = nord11 bold
+shelve.age = nord7
+shelve.newest = nord14 bold
+shelve.name = nord9 bold
+histedit.remaining = nord11 bold
+
+# Description of the CL in "hg x"
+log.summary = nord4
+desc.draft = nord4
+
+# Special color for the description of the CL at head
+desc.here = nord6 bold
+
+# text "tip, p4head, p4base" in "hg x"
+tags.tip = nord13
+tags.p4head = nord13
+tags.p4base = nord13
+
+# Changeset in "hg x"
+log.changeset = nord5
+changeset.shortest = bold nord4
+changeset.remaining = nord4
+
+# CL number in "hg x"
+changeset.draft = nord10
+log.pendingcl = nord10
+
+# Username in "hg x"
+grep.user =
+log.user = nord2
+user.qdii = nord15
+
+[alias]
+# Watch without modified files
+watch = ! HGPLAINEXCEPT=alias,color,graph,revsetalias,templatealias,i18n watch -t -n 1 --color -- "pwd ; echo ''; $HG xl --color=always --config=extensions.blackbox=!'\'"
+# Watch with modified files
+watchm = ! HGPLAINEXCEPT=alias,color,graph,revsetalias,templatealias,i18n watch -t -n 1 --color -- "pwd ; echo ''; $HG status ; echo ""; $HG xl --color=always --config=extensions.blackbox=!'\'"
+bc = !build_cleaner -c=0 $@
+
+[ui]
+username = qdii
+merge = settle
+
+[merge-tools]
+vimdiff.executable = nvim
+vimdiff.args = -d $base $local $output $other +close +close
+settle.executable = nvim
+settle.args = -f $base $local $other $output -c 'SettleInit'
+settle.premerge = keep
+settle.priority = 1
+
+[experimental]
+revisions.prefixhexnode = yes
